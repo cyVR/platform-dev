@@ -1,5 +1,5 @@
 diff --git a/sites/default/default.settings.php b/sites/default/default.settings.php
-index b044be3..16ab6b2 100644
+index b044be3..c96f577 100644
 --- a/sites/default/default.settings.php
 +++ b/sites/default/default.settings.php
 @@ -1,6 +1,22 @@
@@ -25,7 +25,7 @@ index b044be3..16ab6b2 100644
   * @file
   * Drupal site-specific configuration file.
   *
-@@ -628,3 +644,30 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+@@ -628,3 +644,32 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
   * @see drupal_clean_css_identifier()
   */
  # $conf['allow_css_double_underscores'] = TRUE;
@@ -53,7 +53,8 @@ index b044be3..16ab6b2 100644
 +if (file_exists($local_settings)) {
 +  include $local_settings;
 +}
-+// NEPT-537
-+$conf['features_feature_locked']['cce_basic_config']['_all'] = TRUE;
 +
-\ No newline at end of file
++//NEPT-739: Prevent the following feature modules to be reverted outside site installations.
++$is_not_installation = (!drupal_installation_attempted());
++$conf['features_feature_locked']['cce_basic_config']['_all'] = $is_not_installation;
++
