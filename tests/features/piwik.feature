@@ -1,4 +1,4 @@
-@wip @api @javascript @reset-nodes
+@wip @api @reset-nodes
 Feature: Check Piwik
   In order to check if the the type attribute is set for the Piwik element.
   As an administrator
@@ -42,10 +42,11 @@ Feature: Check Piwik
       | all           | ^admin/*        | regexp         | Regexp based section |
       | en            | content/test    | direct         | Direct path section  |
 
+  @javascript
   Scenario: Add a PIWIK rule.
     When I go to "/admin/config/system/webtools/piwik/advanced_rules"
     And I click "Add piwik rule"
-    And I fill in "Section name" with "Regexp based section"
+    And I fill in "Site section" with "Regexp based section"
     And I select "English" from "Language"
     And I select the radio button "Path based on regular expression" with the id "edit-rule-type-regexp"
     And I wait for AJAX to finish
